@@ -1,0 +1,4 @@
+---
+- import_tasks: 08-install.yml
+- import_tasks: 09-config.yml
+...

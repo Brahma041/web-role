@@ -1,0 +1,25 @@
+
+---
+    - name: ensure selinux as permissive
+      selinux:
+        policy: targeted
+        state: permissive
+      when: ansible_distribution == "CentOS"
+
+    - name: Changing the configuration file
+      template:
+        dest: /etc/httpd/conf/httpd.conf
+        src: httpd.j2
+      notify:
+      - Restarting the httpd
+      when: ansible_distribution == "CentOS"
+
+    - name: Changing the configuration file
+      template:
+        dest: /etc/apache2/ports.conf
+        src: ports.j2
+      notify:
+      - Restarting the apache
+      when: ansible_distribution == "Ubuntu"
+...
+
